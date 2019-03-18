@@ -2,4 +2,7 @@ MyStoreTestAutomation\AutomationPractice\AutomationPractice\bin
 AutomationPractice\bin
 AutomationPractice\AutomationPractice\bin
 MyStoreTestAutomation\AutomationPractice\AutomationPractice\bin
-bin
+\bin
+\obj
+*.suo
+*.user
