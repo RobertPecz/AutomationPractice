@@ -1,11 +1,6 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutomationPractice
 {
@@ -20,20 +15,18 @@ namespace AutomationPractice
     {
         public TestCases(Browsers browsers)
             : base(browsers)
-        {
-
-        }
+        { }
         [SetUp]
         public void Instantiation()
         {
-            Driver.Navigate().GoToUrl("https://google.com");
+            Driver.Navigate().GoToUrl("http://automationpractice.com/index.php");
         }
         [Test]
-        public void Foobar()
+        public void STTC_001()
         {
-            //param: [Values] Browsers browsers
-            //Webdrivers.Driver = Webdrivers.Webdriver(browsers);
-            //Webdrivers.Driver.Navigate().GoToUrl("https://google.com");
+            MainPage mainPage = new MainPage();
+            mainPage.Logo.Click();
+            Assert.AreEqual(mainPage.PageName, Driver.Title);
         }
         [TearDown]
         public void CleanUp()
