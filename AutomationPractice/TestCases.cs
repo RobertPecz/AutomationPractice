@@ -9,16 +9,36 @@ using System.Threading.Tasks;
 
 namespace AutomationPractice
 {
-    [TestFixture]
-    public class TestCases
+    public enum Browsers
     {
+        chrome,
+        firefox
+    }
+    [TestFixture(Browsers.chrome)]
+    [TestFixture(Browsers.firefox)]
+    public class TestCases : Webdrivers
+    {
+        public TestCases(Browsers browsers)
+            : base(browsers)
+        {
+
+        }
         [SetUp]
         public void Instantiation()
         {
-            IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https:\\google.com");
+            Driver.Navigate().GoToUrl("https://google.com");
         }
         [Test]
-        public void Foobar() { }
+        public void Foobar()
+        {
+            //param: [Values] Browsers browsers
+            //Webdrivers.Driver = Webdrivers.Webdriver(browsers);
+            //Webdrivers.Driver.Navigate().GoToUrl("https://google.com");
+        }
+        [TearDown]
+        public void CleanUp()
+        {
+            Driver.Close();
+        }
     }
 }
