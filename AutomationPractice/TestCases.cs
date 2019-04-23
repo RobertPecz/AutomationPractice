@@ -1,24 +1,37 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AutomationPractice
 {
-    [TestFixture]
-    public class TestCases
+    public enum Browsers
     {
+        chrome,
+        firefox
+    }
+    [TestFixture(Browsers.chrome)]
+    [TestFixture(Browsers.firefox)]
+    public class TestCases : Webdrivers
+    {
+        public TestCases(Browsers browsers)
+            : base(browsers)
+        { }
         [SetUp]
         public void Instantiation()
         {
-            IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https:\\google.com");
+            Driver.Navigate().GoToUrl("http://automationpractice.com/index.php");
         }
         [Test]
-        public void Foobar() { }
+        public void STTC_001()
+        {
+            MainPage mainPage = new MainPage();
+            mainPage.Logo.Click();
+            Assert.AreEqual(mainPage.PageName, Driver.Title);
+        }
+        [TearDown]
+        public void CleanUp()
+        {
+            Driver.Close();
+        }
     }
 }
