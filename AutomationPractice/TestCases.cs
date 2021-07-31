@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
-using OpenQA.Selenium.Support.UI;
-using System;
+using OpenQA.Selenium.Chrome;
 
 namespace AutomationPractice
 {
@@ -9,23 +8,20 @@ namespace AutomationPractice
         chrome,
         firefox
     }
-    [TestFixture(Browsers.chrome)]
-    [TestFixture(Browsers.firefox)]
     public class TestCases : Webdrivers
     {
-        public TestCases(Browsers browsers)
-            : base(browsers)
-        { }
         [SetUp]
         public void Instantiation()
         {
+            Driver = new ChromeDriver();
             Driver.Navigate().GoToUrl("http://automationpractice.com/index.php");
         }
         [Test]
         public void STTC_001()
         {
             MainPage mainPage = new MainPage();
-            mainPage.Logo.Click();
+            UiInteractions.ClickOn(mainPage.Logo);
+            
             Assert.AreEqual(mainPage.PageName, Driver.Title);
         }
         [TearDown]
