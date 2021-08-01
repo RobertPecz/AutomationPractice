@@ -5,13 +5,13 @@ using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace AutomationPractice
 {
-    public class UiInteractions : Webdrivers
+    public class UiInteractions<TWebdrivers> where TWebdrivers : IWebDriver, new()
     {
         public static void ClickOn(IWebElement element)
         {
             try
             {
-                WebDriverWait wait = new WebDriverWait(Driver, new TimeSpan(0, 0, 60));
+                WebDriverWait wait = new WebDriverWait(Webdrivers<TWebdrivers>.Driver, new TimeSpan(0, 0, 60));
                 wait.Until(ExpectedConditions.ElementToBeClickable(element)).Click();
             }
             catch (ElementNotInteractableException e)
