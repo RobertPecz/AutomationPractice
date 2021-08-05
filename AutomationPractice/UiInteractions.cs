@@ -1,7 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
+using SeleniumExtras.WaitHelpers;
 
 namespace AutomationPractice
 {
@@ -10,9 +9,23 @@ namespace AutomationPractice
         public static void ClickOn(IWebElement element)
         {
             try
+            {               
+                WebdriverWaiter<TWebdrivers>.wait.Until(ExpectedConditions.ElementToBeClickable(element)).Click();
+            }
+            catch (ElementNotInteractableException e)
             {
-                WebDriverWait wait = new WebDriverWait(Webdrivers<TWebdrivers>.Driver, new TimeSpan(0, 0, 60));
-                wait.Until(ExpectedConditions.ElementToBeClickable(element)).Click();
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public static void SendText(string locator, string text)
+        {
+            try
+            {
+                WebdriverWaiter<TWebdrivers>.wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(locator))).SendKeys(text);
             }
             catch (ElementNotInteractableException e)
             {
