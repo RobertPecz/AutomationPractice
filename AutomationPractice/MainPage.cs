@@ -7,6 +7,7 @@ namespace AutomationPractice
     {
         public IWebElement Logo => Webdrivers<TWebdrivers>.Driver.FindElement(By.XPath("//a[@href='http://automationpractice.com/']"));
         public IWebElement SearchBar => Webdrivers<TWebdrivers>.Driver.FindElement(By.XPath("//input[@id='search_query_top']"));
+        public IWebElement ContactUSButton => Webdrivers<TWebdrivers>.Driver.FindElement(By.XPath("//a[@title='Contact Us']"));
         public IWebElement SearchButton => Webdrivers<TWebdrivers>.Driver.FindElement(By.XPath("//button[@name='submit_search']"));
         public IWebElement SearchResult; 
         public string SearchResultUrl;
