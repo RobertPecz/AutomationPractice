@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContactUsPage.cs" />
     <Compile Include="MainPage.cs" />
     <Compile Include="TestCases.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

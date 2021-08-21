@@ -38,6 +38,15 @@ namespace AutomationPractice
             StringAssert.Contains(stringToAssert.ToLower(), mainPage.SearchResultUrl);
 
         }
+        [Test]
+        public void STTC_005()
+        {
+            MainPage<TWebdrivers> mainPage = new MainPage<TWebdrivers>();
+            UiInteractions<TWebdrivers>.ClickOn(mainPage.ContactUSButton);
+            ContactUsPage<TWebdrivers> contactUs = new ContactUsPage<TWebdrivers>();
+            string contactUsText = contactUs.ContactUSH1.GetAttribute("innerText");
+            Assert.AreEqual("Customer service - Contact us", contactUsText);
+        }
         [TearDown]
         public void CleanUp()
         {
