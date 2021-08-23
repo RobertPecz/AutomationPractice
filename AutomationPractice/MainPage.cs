@@ -19,5 +19,10 @@ namespace AutomationPractice
             SearchResult = Webdrivers<TWebdrivers>.Driver.FindElement(By.XPath(locator));
             SearchResultUrl = Webdrivers<TWebdrivers>.Driver.Url;
         }
+        public ContactUsPage<TWebdrivers> ClickOnContactUSButton()
+        {
+            UiInteractions<TWebdrivers>.ClickOn(ContactUSButton);
+            return new ContactUsPage<TWebdrivers>();
+        }
     }
 }
