@@ -46,6 +46,13 @@ namespace AutomationPractice
             string contactUsText = contactUs.ContactUSH1.GetAttribute("innerText");
             Assert.AreEqual("Customer service - Contact us", contactUsText);
         }
+        [Test]
+        public void STTC_008()
+        {
+            MainPage<TWebdrivers> mainPage = new MainPage<TWebdrivers>();
+            RegisterAndLoginPage<TWebdrivers> registerAndLogin = mainPage.ClickOnSignInButton();
+            //
+        }
 
         [TearDown]
         public void CleanUp()
