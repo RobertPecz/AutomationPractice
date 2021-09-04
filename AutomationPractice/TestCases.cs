@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using SeleniumExtras.WaitHelpers;
 using System.Text.RegularExpressions;
 
 namespace AutomationPractice
@@ -42,11 +43,23 @@ namespace AutomationPractice
         public void STTC_005()
         {
             MainPage<TWebdrivers> mainPage = new MainPage<TWebdrivers>();
-            UiInteractions<TWebdrivers>.ClickOn(mainPage.ContactUSButton);
-            ContactUsPage<TWebdrivers> contactUs = new ContactUsPage<TWebdrivers>();
+            ContactUsPage<TWebdrivers> contactUs = mainPage.ClickOnContactUSButton();
             string contactUsText = contactUs.ContactUSH1.GetAttribute("innerText");
             Assert.AreEqual("Customer service - Contact us", contactUsText);
         }
+        [Test]
+        public void STTC_008()
+        {
+            string signInEmailXPath = "//input[@id='email']";
+            string signInPasswordXPath = "//input[@id='passwd']";
+            MainPage<TWebdrivers> mainPage = new MainPage<TWebdrivers>();
+            RegisterAndLoginPage<TWebdrivers> registerAndLoginPage = mainPage.ClickOnSignInButton();          
+            UiInteractions<TWebdrivers>.SendText(signInEmailXPath, "hulitiduv@tovinit.com");
+            UiInteractions<TWebdrivers>.SendText(signInPasswordXPath, "12345");
+            UiInteractions<TWebdrivers>.ClickOn(registerAndLoginPage.LoginButton);
+            WebdriverWaiter<TWebdrivers>.wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//a[@class='account']/span[contains(text(), 'Random Person')]")));
+        }
+
         [TearDown]
         public void CleanUp()
         {
