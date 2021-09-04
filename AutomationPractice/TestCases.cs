@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using SeleniumExtras.WaitHelpers;
+using System;
 using System.Text.RegularExpressions;
 
 namespace AutomationPractice
@@ -46,6 +47,13 @@ namespace AutomationPractice
             ContactUsPage<TWebdrivers> contactUs = mainPage.ClickOnContactUSButton();
             string contactUsText = contactUs.ContactUSH1.GetAttribute("innerText");
             Assert.AreEqual("Customer service - Contact us", contactUsText);
+        }
+        [Test]
+        public void STTC_007()
+        {
+            MainPage<TWebdrivers> mainPage = new MainPage<TWebdrivers>();
+            EmailCreator email = new EmailCreator();
+            email.CreateTemporaryEmail();          
         }
         [Test]
         public void STTC_008()

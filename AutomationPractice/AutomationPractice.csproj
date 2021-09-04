@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContactUsPage.cs" />
+    <Compile Include="EmailCreator.cs" />
     <Compile Include="MainPage.cs" />
     <Compile Include="RegisterAndLoginPage.cs" />
     <Compile Include="TestCases.cs" />
