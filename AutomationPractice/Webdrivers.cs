@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using System;
 
 namespace AutomationPractice
 {
@@ -16,6 +17,7 @@ namespace AutomationPractice
             }
             else
             {
+                Environment.SetEnvironmentVariable("webdriver.gecko.driver", @"E:\Projects\AutomationPractice\packages\Selenium.WebDriver.GeckoDriver.0.29.1\driver\win64");
                 Driver = new FirefoxDriver();
             }
         }       
