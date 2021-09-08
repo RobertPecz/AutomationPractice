@@ -1,4 +1,5 @@
 ﻿using System;
+using CustomWaits;
 using OpenQA.Selenium;
 using SeleniumExtras.WaitHelpers;
 
@@ -10,7 +11,7 @@ namespace AutomationPractice
         {
             try
             {               
-                WebdriverWaiter<TWebdrivers>.wait.Until(ExpectedConditions.ElementToBeClickable(element)).Click();
+                WebdriverWaiter<TWebdrivers>.wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element)).Click();    
             }
             catch (ElementNotInteractableException e)
             {
@@ -25,7 +26,22 @@ namespace AutomationPractice
         {
             try
             {
-                WebdriverWaiter<TWebdrivers>.wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(locator))).SendKeys(text);
+                WebdriverWaiter<TWebdrivers>.wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(locator))).SendKeys(text);
+            }
+            catch (ElementNotInteractableException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public static void SendText(IWebElement element, string text)
+        {
+            try
+            {
+                WebdriverWaiter<TWebdrivers>.wait.Until(CustomWaits.ExpectedConditions.ElementIsVisible(element)).SendKeys(text);
             }
             catch (ElementNotInteractableException e)
             {

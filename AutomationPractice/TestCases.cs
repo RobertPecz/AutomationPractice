@@ -53,7 +53,7 @@ namespace AutomationPractice
         {
             MainPage<TWebdrivers> mainPage = new MainPage<TWebdrivers>();
             EmailCreator email = new EmailCreator();
-            email.CreateTemporaryEmail();          
+            email.CreateTemporaryEmail();           
         }
         [Test]
         public void STTC_008()
